@@ -57,4 +57,24 @@ public class TestStringCalculator {
 		int shouldBeSix = sc.add("1\n2,3");
 		assertEquals(6,shouldBeSix);
 	}
+	
+	/*@Test
+	public void testContiguousDelimiterDoesntWork() {
+		NumberFormatException lanzada = null;
+		try{
+			sc.add("1\n,3");
+		}
+		catch(NumberFormatException nfe){
+			lanzada = nfe;
+		}
+		assertNotNull(lanzada);
+	}*/
+		
+	@Test
+	public void testCustomDelimiters() {
+		int shouldBeFive = sc.add("//;\n2;3");
+		assertEquals(5,shouldBeFive);
+	}
+	
+	
 }
