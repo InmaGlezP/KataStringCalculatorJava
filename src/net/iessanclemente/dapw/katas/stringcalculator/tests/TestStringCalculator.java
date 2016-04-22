@@ -45,4 +45,14 @@ public class TestStringCalculator {
 		assertEquals(10,shouldBeTen);
 		
 	}
+	
+	@Test
+	public void testCRDelimiter() {
+		int shouldBeThree = sc.add("1\n2");
+		int shouldBeSix = sc.add("1\n2,3");
+		assertEquals(3,shouldBeThree);
+		assertEquals(6,shouldBeSix);
+		
+		
+	}
 }
