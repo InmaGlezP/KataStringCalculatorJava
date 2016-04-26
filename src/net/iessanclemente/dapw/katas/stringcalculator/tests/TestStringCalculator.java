@@ -2,6 +2,7 @@ package net.iessanclemente.dapw.katas.stringcalculator.tests;
 
 import static org.junit.Assert.*;
 import net.iessanclemente.dapw.katas.stringcalculator.StringCalculator;
+import net.iessanclemente.dapw.katas.stringcalculator.exceptions.NegativesNotSupportedException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,8 +43,7 @@ public class TestStringCalculator {
 		int shouldBeSix = sc.add("1,2,3");
 		int shouldBeTen = sc.add("1,2,3,4");
 		assertEquals(6,shouldBeSix);
-		assertEquals(10,shouldBeTen);
-		
+		assertEquals(10,shouldBeTen);	
 	}
 	
 	@Test
@@ -76,5 +76,16 @@ public class TestStringCalculator {
 		assertEquals(5,shouldBeFive);
 	}
 	
-	
+	@Test
+	public void testNegativeNumbers() {
+		NegativesNotSupportedException lanzado = null;
+		try{
+			sc.add("1,-3");
+		}
+		catch(NegativesNotSupportedException iae){
+			lanzado = iae;
+			System.out.println(iae.getMessage());
+		}
+		assertNotNull(lanzado);
+	}
 }

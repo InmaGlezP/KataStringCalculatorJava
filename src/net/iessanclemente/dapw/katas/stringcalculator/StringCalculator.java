@@ -1,5 +1,7 @@
 package net.iessanclemente.dapw.katas.stringcalculator;
 
+import net.iessanclemente.dapw.katas.stringcalculator.exceptions.NegativesNotSupportedException;
+
 public class StringCalculator {
 
 	public int add(String txt) {
@@ -13,9 +15,21 @@ public class StringCalculator {
 				txt=txt.substring(4);
 				separators+="|"+ customSeparator;
 			}
+			
 			String[] numberList=txt.split(separators);
+			Integer[] negatives = new Integer[numberList.length];
+			int i= 0;
 			for(String number : numberList){
-				result+=Integer.parseInt(number);
+				int n = Integer.parseInt(number);
+				
+				if(n<0){
+					negatives[i] = n;
+					i++;
+				}
+				result+=n;
+			}
+			if(i!=0){
+				throw new NegativesNotSupportedException(negatives);
 			}
 		}
 			
