@@ -88,4 +88,19 @@ public class TestStringCalculator {
 		}
 		assertNotNull(lanzado);
 	}
+	
+	@Test
+	public void testAFewNegativeNumbers() {
+		NegativesNotSupportedException lanzado = null;
+		try{
+			sc.add("1,-3,3,-5");
+		}
+		catch(NegativesNotSupportedException iae){
+			lanzado = iae;
+			System.out.println(iae.getMessage());
+		}
+		assertEquals(2,lanzado.getNegatives().length);
+	}
+	
+	
 }

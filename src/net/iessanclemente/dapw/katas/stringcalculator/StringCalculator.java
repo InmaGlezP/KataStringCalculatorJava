@@ -1,5 +1,8 @@
 package net.iessanclemente.dapw.katas.stringcalculator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.iessanclemente.dapw.katas.stringcalculator.exceptions.NegativesNotSupportedException;
 
 public class StringCalculator {
@@ -17,19 +20,18 @@ public class StringCalculator {
 			}
 			
 			String[] numberList=txt.split(separators);
-			Integer[] negatives = new Integer[numberList.length];
-			int i= 0;
+			List<Integer> negatives = new ArrayList<Integer>();
+			
 			for(String number : numberList){
 				int n = Integer.parseInt(number);
 				
 				if(n<0){
-					negatives[i] = n;
-					i++;
+					negatives.add(n);
 				}
 				result+=n;
 			}
-			if(i!=0){
-				throw new NegativesNotSupportedException(negatives);
+			if(negatives.size()>0){
+				throw new NegativesNotSupportedException(negatives.toArray(new Integer[negatives.size()]));
 			}
 		}
 			
